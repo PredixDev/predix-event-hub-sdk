@@ -6,7 +6,7 @@
 
     <groupId>com.ge.predix.eventhub</groupId>
     <artifactId>predix-event-hub-sdk</artifactId>
-    <version>2.2.4</version> <!--- NOTE: also change version in readme and log statement in Client class -->
+    <version>2.2.5</version> <!--- NOTE: also change version in readme and log statement in Client class -->
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>

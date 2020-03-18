@@ -38,7 +38,7 @@ import static com.ge.predix.eventhub.EventHubConstants.EnvironmentVariables.*;
 public class Client implements AutoCloseable {
     private static final String healthCheckUrl = "predix-event-hub.grpc.health";
     private static final Long ttlHealth = 30000L;
-    private static final String sdkVersionString = "2.2.4";
+    private static final String sdkVersionString = "2.2.5";
 
 
     private Channel channel;

@@ -23,9 +23,13 @@ import java.util.logging.Logger;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.ge.predix.eventhub.*;
 import com.ge.predix.eventhub.configuration.LoggerConfiguration;
+import com.ge.predix.eventhub.test.categories.DefectTest;
 import com.ge.predix.eventhub.test.categories.SanityTest;
 import com.ge.predix.eventhub.test.categories.SmokeTest;
 import com.google.protobuf.ByteString;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
@@ -311,6 +315,37 @@ public class EventHubUtilsTest {
             utilLogger.log(level, "log level", level.toString());
             slf4jLogger.log(level, "log level", level.toString());
         }
+    }
+
+    /**
+     * test serializing messages for logging with nested object, e.g.
+     * {
+     *    "publisher_msg":{
+     *       "msg":"ignoring values from config, don't apply to this publisher type",
+     *       "ignores":[
+     *          "timeout",
+     *          10000
+     *       ]
+     *    }
+     * }
+     */
+    @Test
+    @Category(DefectTest.class)
+    public void test() {
+        final List<Object> ignores = new ArrayList<>();
+        final String timeoutKey = "timeout";
+        final long timeoutValue = 10000L;
+        ignores.add(timeoutKey);
+        ignores.add(timeoutValue);
+        JSONObject jsonObject = EventHubUtils.formatJson(
+                "publisher_msg",
+                "msg",
+                "ignoring values from config, don't apply to this publisher type",
+                "ignores",
+                ignores
+        );
+        final JSONArray ignoresJsonValue = jsonObject.getJSONObject("publisher_msg").getJSONArray("ignores");
+        Assert.assertEquals(ignores, ignoresJsonValue.toList());
     }
 
 }

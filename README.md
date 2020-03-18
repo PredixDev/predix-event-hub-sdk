@@ -24,7 +24,7 @@ The most simple way to use this SDK is to pull from the Predix Snapshot artifact
   <dependency>
     <groupId>com.ge.predix.eventhub</groupId>
     <artifactId>predix-event-hub-sdk</artifactId>
-    <version>2.2.4</version>
+    <version>2.2.5</version>
   </dependency>
 ...
 </dependencies>

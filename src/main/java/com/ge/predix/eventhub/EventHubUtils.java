@@ -191,7 +191,7 @@ public class EventHubUtils {
             for(Object o : (List) value){
                 array.put(o);
             }
-            jsonObj.put(key, new JSONArray(value));
+            jsonObj.put(key, new JSONArray(((List) value)));
             return;
         }
         jsonObj.put(key, value);
